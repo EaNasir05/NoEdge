@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e66c6366d904e98bc83428217d4fd7, type: 3}
+  m_Name: camera_script
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":208.767,"y":307.5439},"zoom":0.5999999,"elements":[{"coroutine":false,"defaultValues":{},"position":{"x":-204.0,"y":-144.0},"guid":"dd5a1491-9fee-4a46-a762-bd44d1a22060","$version":"A","$type":"Unity.VisualScripting.Start","$id":"9"},{"chainable":false,"member":{"name":"lockState","parameterTypes":null,"targetType":"UnityEngine.Cursor","targetTypeName":"UnityEngine.Cursor","$version":"A"},"defaultValues":{"input":{"$content":"Locked","$type":"UnityEngine.CursorLockMode"}},"position":{"x":-37.0,"y":-145.0},"guid":"8f628eae-1495-4ec9-97ce-1547e4f5c421","$version":"A","$type":"Unity.VisualScripting.SetMember","$id":"11"},{"sourceUnit":{"$ref":"9"},"sourceKey":"trigger","destinationUnit":{"$ref":"11"},"destinationKey":"assign","guid":"e47ba7bb-769e-46b7-bb36-3ac7a3360cf8","$type":"Unity.VisualScripting.ControlConnection"}],"$version":"A"}}'
+    _objectReferences: []
