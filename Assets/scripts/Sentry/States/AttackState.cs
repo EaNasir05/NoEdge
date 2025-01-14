@@ -42,8 +42,6 @@ public class AttackState : BaseState
 
     public void Shoot()
     {
-        Debug.Log("Shoot");
-        Transform sentryBarrel = sentry.barrel.transform;
-        GameObject bullet = GameObject.Instantiate(Resources.Load("prefabs/Bullet") as GameObject, sentryBarrel.position, sentry.transform.rotation);
+        sentry.Shoot();
     }
 }

@@ -5,28 +5,34 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
-    private Vector3 lastVelocity;
     public float speed;
-    private Vector3 direction;
 
     void Update()
     {
-        lastVelocity = rb.velocity;
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        //transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        rb.velocity = transform.forward * speed;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Transform hitTransform = collision.transform;
-        if (hitTransform.CompareTag("Cube"))
+        if (collision.transform.CompareTag("Bouncy"))
         {
-            speed = lastVelocity.magnitude;
-            direction = Vector3.Reflect(lastVelocity.normalized, collision.contacts[0].normal);
-            rb.velocity = direction * Mathf.Max(speed, 0);
+            Debug.Log("BOUNCE");
         }
         else
         {
             Destroy(gameObject);
         }
     }
+
+    /*private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Bouncy"))
+        {
+            Debug.Log("BOUNCE");
+            Plane plane = other.gameObject.GetComponent<Plane>();
+            Vector3.Reflect(gameObject.transform.forward, plane.normal);
+            
+        }
+    }*/
 }
