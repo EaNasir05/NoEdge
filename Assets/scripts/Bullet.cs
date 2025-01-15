@@ -9,7 +9,6 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        //transform.Translate(Vector3.forward * speed * Time.deltaTime);
         rb.velocity = transform.forward * speed;
     }
 
@@ -24,15 +23,4 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Bouncy"))
-        {
-            Debug.Log("BOUNCE");
-            Plane plane = other.gameObject.GetComponent<Plane>();
-            Vector3.Reflect(gameObject.transform.forward, plane.normal);
-            
-        }
-    }*/
 }

@@ -17,7 +17,7 @@ public class AttackState : BaseState
         if (sentry.CanSeePlayer())
         {
             shootTimer += Time.deltaTime;
-            sentry.transform.LookAt(sentry.Player.transform);
+            sentry.transform.LookAt(sentry.player.transform);
             if (shootTimer > sentry.fireRate)
             {
                 Shoot();
