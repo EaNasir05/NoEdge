@@ -6,30 +6,38 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
-    public float speed;
+    private bool plasma;
+    private float speed;
     private Vector3 direction;
+
+    public void SetSpeed(float speed)
+    {
+        this.speed = speed;
+    }
+
+    public void SetPlasma(bool plasma)
+    {
+        this.plasma = plasma;
+    }
 
     public void Travel(Vector3 direction)
     {
         this.direction = direction;
-        rb.velocity = direction * speed;
+        rb.velocity = direction * this.speed;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.CompareTag("Bouncy"))
+        Debug.Log(collision.gameObject.name);
+        if (collision.transform.CompareTag("Bouncy") && this.plasma)
         {
-            Debug.Log("BOUNCE");
             var contact = collision.contacts[0];
             Vector3 newVelocity = Vector3.Reflect(direction.normalized, contact.normal);
             Travel(newVelocity.normalized);
         }
         else
         {
-            var contact = collision.contacts[0];
-            Vector3 newVelocity = Vector3.Reflect(direction.normalized, contact.normal);
-            Travel(newVelocity.normalized);
-            //Destroy(gameObject);
+            GameObject.Destroy(gameObject);
         }
     }
 }

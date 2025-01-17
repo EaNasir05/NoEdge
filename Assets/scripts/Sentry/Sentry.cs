@@ -7,13 +7,14 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class Sentry : MonoBehaviour
 {
-    public StateMachine stateMachine;
-    public GameObject player;
-    public GameObject bullet;
-    public Transform bulletSpawnPosition;
-    public float bulletSpeed;
-    public GameObject defaultDirection;
-    public float fireRate;
+    private StateMachine stateMachine;
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private Transform bulletSpawnPosition;
+    [SerializeField] private float bulletSpeed;
+    [SerializeField] private GameObject defaultDirection;
+    [SerializeField] private float fireRate;
+    [SerializeField] private bool plasma;
     private float sightDistance = 20f;
     private float fieldOfView = 85f;
 
@@ -26,6 +27,21 @@ public class Sentry : MonoBehaviour
     void Update()
     {
         CanSeePlayer();
+    }
+
+    public GameObject GetPlayer()
+    {
+        return player;
+    }
+
+    public GameObject GetDefaultDirection()
+    {
+        return defaultDirection;
+    }
+
+    public float GetFireRate()
+    {
+        return fireRate;
     }
 
     public bool CanSeePlayer()
@@ -57,7 +73,8 @@ public class Sentry : MonoBehaviour
     public void Shoot()
     {
         GameObject newBullet = GameObject.Instantiate(bullet, bulletSpawnPosition.position, transform.rotation);
-        newBullet.GetComponent<Bullet>().speed = bulletSpeed;
+        newBullet.GetComponent<Bullet>().SetSpeed(bulletSpeed);
+        newBullet.GetComponent<Bullet>().SetPlasma(plasma);
         newBullet.GetComponent<Bullet>().Travel(transform.forward);
     }
 }

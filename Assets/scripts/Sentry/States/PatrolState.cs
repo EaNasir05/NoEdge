@@ -11,7 +11,7 @@ public class PatrolState : BaseState
 
     public override void Perform()
     {
-        sentry.transform.LookAt(sentry.defaultDirection.transform);
+        sentry.transform.LookAt(sentry.GetDefaultDirection().transform);
         if (sentry.CanSeePlayer())
         {
             stateMachine.ChangeState(new AttackState());
