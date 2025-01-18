@@ -9,6 +9,9 @@ TagManager:
   - Destructible
   - Cube
   - Bullet
+  - Sentry
+  - Laser
+  - Glass
   layers:
   - Default
   - TransparentFX

@@ -38,6 +38,20 @@ public class Bullet : MonoBehaviour
         else
         {
             GameObject.Destroy(gameObject);
+            if (this.plasma) 
+            {
+                if (collision.transform.CompareTag("Laser"))
+                {
+                    GameObject.Destroy(collision.gameObject);
+                }
+            }
+            else
+            {
+                if (collision.transform.CompareTag("Glass"))
+                {
+                    GameObject.Destroy(collision.gameObject);
+                }
+            }
         }
     }
 }
