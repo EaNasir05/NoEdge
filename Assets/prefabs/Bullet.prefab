@@ -91,6 +91,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7985642070776303689}
+  bounceAudioClip: {fileID: 8300000, guid: c66e2f9cf32b54c4384c3d1d4fd80c97, type: 3}
+  glassDestroyedAudioClip: {fileID: 8300000, guid: 13dcf5e42f2e4bd498b39b6fd851183c, type: 3}
+  laserDestroyedAudioClip: {fileID: 8300000, guid: cae00905ac137a24dbd6c209583d55a7, type: 3}
+  death:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!135 &6139158495057674121
 SphereCollider:
   m_ObjectHideFlags: 0

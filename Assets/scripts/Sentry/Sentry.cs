@@ -15,6 +15,11 @@ public class Sentry : MonoBehaviour
     [SerializeField] private GameObject defaultDirection;
     [SerializeField] private float fireRate;
     [SerializeField] private bool plasma;
+    [SerializeField] private AudioClip chargingAudioClip;
+    [SerializeField] private AudioClip plasmaShotAudioClip;
+    [SerializeField] private AudioClip bulletShotAudioClip;
+    [SerializeField] private AudioClip resetAudioClip;
+    [SerializeField] private AudioClip targetAcquiredAudioClip;
     private float sightDistance = 20f;
     private float fieldOfView = 85f;
 
@@ -42,6 +47,21 @@ public class Sentry : MonoBehaviour
     public float GetFireRate()
     {
         return fireRate;
+    }
+
+    public AudioClip GetResetAudioClip()
+    {
+        return resetAudioClip;
+    }
+
+    public AudioClip GetChargingAudioClip()
+    {
+        return chargingAudioClip;
+    }
+
+    public AudioClip GetTargetAcquiredAudioClip()
+    {
+        return targetAcquiredAudioClip;
     }
 
     public bool CanSeePlayer()
@@ -76,5 +96,13 @@ public class Sentry : MonoBehaviour
         newBullet.GetComponent<Bullet>().SetSpeed(bulletSpeed);
         newBullet.GetComponent<Bullet>().SetPlasma(plasma);
         newBullet.GetComponent<Bullet>().Travel(transform.forward);
+        if (plasma)
+        {
+            SoundFXManager.instance.PlaySoundFXClip(plasmaShotAudioClip, transform, 0.4f);
+        }
+        else
+        {
+            SoundFXManager.instance.PlaySoundFXClip(bulletShotAudioClip, transform, 0.7f);
+        }
     }
 }

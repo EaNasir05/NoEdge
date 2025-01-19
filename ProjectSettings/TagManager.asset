@@ -12,6 +12,8 @@ TagManager:
   - Sentry
   - Laser
   - Glass
+  - UIManager
+  - SoundFXManager
   layers:
   - Default
   - TransparentFX
@@ -21,8 +23,8 @@ TagManager:
   - UI
   - Bullet
   - Cube
-  - 
-  - 
+  - Laser
+  - Plasma
   - 
   - 
   - 

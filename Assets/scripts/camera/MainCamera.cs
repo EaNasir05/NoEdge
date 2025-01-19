@@ -12,28 +12,31 @@ public class MainCamera : MonoBehaviour
 
     void Update()
     {
-        Ray ray = new Ray(controlPoint.position, defaultPosition.position - controlPoint.position);
-        RaycastHit hit = new RaycastHit();
-        float distance = Vector3.Distance(defaultPosition.position, controlPoint.position);
-        if (Physics.Raycast(ray, out hit, distance) && !hit.transform.CompareTag("Bullet") && !hit.transform.CompareTag("Sentry"))
+        if (transform.parent != null)
         {
-            ray = new Ray(controlPoint.position, altPosition.position - controlPoint.position);
-            distance = Vector3.Distance(altPosition.position, controlPoint.position);
+            Ray ray = new Ray(controlPoint.position, defaultPosition.position - controlPoint.position);
+            RaycastHit hit = new RaycastHit();
+            float distance = Vector3.Distance(defaultPosition.position, controlPoint.position);
             if (Physics.Raycast(ray, out hit, distance) && !hit.transform.CompareTag("Bullet") && !hit.transform.CompareTag("Sentry"))
             {
-                transform.position = firstPersonPosition.position;
-                gameObject.GetComponent<Camera>().fieldOfView = 55;
+                ray = new Ray(controlPoint.position, altPosition.position - controlPoint.position);
+                distance = Vector3.Distance(altPosition.position, controlPoint.position);
+                if (Physics.Raycast(ray, out hit, distance) && !hit.transform.CompareTag("Bullet") && !hit.transform.CompareTag("Sentry"))
+                {
+                    transform.position = firstPersonPosition.position;
+                    gameObject.GetComponent<Camera>().fieldOfView = 55;
+                }
+                else
+                {
+                    transform.position = altPosition.position;
+                    gameObject.GetComponent<Camera>().fieldOfView = 45;
+                }
             }
             else
             {
-                transform.position = altPosition.position;
-                gameObject.GetComponent<Camera>().fieldOfView = 45;
+                transform.position = defaultPosition.position;
+                gameObject.GetComponent<Camera>().fieldOfView = 40;
             }
-        }
-        else
-        {
-            transform.position = defaultPosition.position;
-            gameObject.GetComponent<Camera>().fieldOfView = 40;
         }
     }
 }
