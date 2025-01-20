@@ -6,7 +6,6 @@ public class AttackState : BaseState
 {
     private float shootTimer;
     private float searchTimer;
-    private bool charging = false;
 
     public override void Enter()
     {
@@ -17,24 +16,18 @@ public class AttackState : BaseState
     {
         if (sentry.CanSeePlayer())
         {
-            if (!charging && sentry.GetFireRate() > 3)
-            {
-                charging = true;
-                SoundFXManager.instance.PlaySoundFXClip(sentry.GetChargingAudioClip(), sentry.transform, 0.6f);
-            }
             shootTimer += Time.deltaTime;
             sentry.transform.LookAt(sentry.GetPlayer().transform);
             if (shootTimer > sentry.GetFireRate())
             {
                 Shoot();
                 shootTimer = 0;
-                charging = false;
             }
         }
         else
         {
             searchTimer += Time.deltaTime;
-            if (searchTimer > 5)
+            if (searchTimer > 3)
             {
                 searchTimer = 0;
                 stateMachine.ChangeState(new PatrolState());

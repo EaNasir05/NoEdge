@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
 {
     private bool deathState;
     private bool pauseState;
+    private bool successState;
     public UnityEvent pause;
     public UnityEvent resume;
     [SerializeField] private AudioClip deathAudioClip;
@@ -15,8 +16,10 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         deathState = false;
+        successState = false;
         pauseState = false;
         pause.AddListener(GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().OnPauseEvent);
         resume.AddListener(GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().OnResumeEvent);
@@ -28,7 +31,7 @@ public class GameController : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        if(Input.GetKeyDown(KeyCode.Escape) && !deathState)
+        if(Input.GetKeyDown(KeyCode.Escape) && !deathState && !successState)
         {
             if (pauseState)
             {
@@ -50,5 +53,12 @@ public class GameController : MonoBehaviour
         GameObject.FindGameObjectWithTag("MainCamera").transform.parent = null;
         GameObject.Destroy(GameObject.FindGameObjectWithTag("Cube"));
         deathState = true;
+    }
+
+    public void OnSuccessEvent()
+    {
+        SoundFXManager.instance.PlaySoundFXClip(successAudioClip, transform, 0.7f);
+        Time.timeScale = 0;
+        successState = true;
     }
 }

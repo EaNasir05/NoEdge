@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject deathScreen;
     [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private GameObject successScreen;
 
     public void OnDeathEvent()
     {
@@ -23,5 +24,10 @@ public class UIManager : MonoBehaviour
     public void OnResumeEvent()
     {
         pauseScreen.SetActive(false);
+    }
+
+    public void OnSuccessEvent()
+    {
+        successScreen.SetActive(true);
     }
 }

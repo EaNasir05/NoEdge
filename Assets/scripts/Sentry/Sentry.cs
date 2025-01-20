@@ -15,18 +15,19 @@ public class Sentry : MonoBehaviour
     [SerializeField] private GameObject defaultDirection;
     [SerializeField] private float fireRate;
     [SerializeField] private bool plasma;
-    [SerializeField] private AudioClip chargingAudioClip;
     [SerializeField] private AudioClip plasmaShotAudioClip;
     [SerializeField] private AudioClip bulletShotAudioClip;
     [SerializeField] private AudioClip resetAudioClip;
     [SerializeField] private AudioClip targetAcquiredAudioClip;
-    private float sightDistance = 20f;
-    private float fieldOfView = 85f;
+    [SerializeField] private float sightDistance;
+    [SerializeField] private float fieldOfView;
 
     void Start()
     {
         stateMachine = GetComponent<StateMachine>();
         stateMachine.Initialise();
+        Debug.Log(sightDistance);
+        Debug.Log(fieldOfView);
     }
 
     void Update()
@@ -52,11 +53,6 @@ public class Sentry : MonoBehaviour
     public AudioClip GetResetAudioClip()
     {
         return resetAudioClip;
-    }
-
-    public AudioClip GetChargingAudioClip()
-    {
-        return chargingAudioClip;
     }
 
     public AudioClip GetTargetAcquiredAudioClip()
